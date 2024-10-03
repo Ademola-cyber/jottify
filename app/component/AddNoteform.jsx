@@ -11,6 +11,7 @@ import { useSession } from 'next-auth/react'
 const AddNoteform = () => {
   const [processing, setProcessing] = useState(false);
   const {data:session, status} = useSession()
+
   const { toast } = useToast();
   
   const initval = {
@@ -30,6 +31,7 @@ const AddNoteform = () => {
     try {
       console.log(values);
       setProcessing(true);
+
       //creating a document to be stored/sent in database
       const jotter = {
         title: values.title,
@@ -37,6 +39,7 @@ const AddNoteform = () => {
         createdAt: new Date(),
         author: session?.user?.name
       };
+
       //adding jotter to the database
       const docRef = collection(db, "notes");
       await addDoc(docRef, jotter);
@@ -44,11 +47,13 @@ const AddNoteform = () => {
       toast({
         description: "Your note has been sent.",
       });
+
       resetForm();
       
     } catch (error) {
       console.error(error);
       alert("error adding notes");
+      
     } finally {
       setProcessing(false);
     }

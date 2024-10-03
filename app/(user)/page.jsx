@@ -18,7 +18,7 @@ const page = () => {
               Lorem
             </button>
             <button className="border border-white rounded-md py-2 px-4 hover:bg-white hover:text-black">
-              LOrem
+              Lorem
             </button>
           </div>
         </div>
